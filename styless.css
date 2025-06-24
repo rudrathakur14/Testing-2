@@ -1,3 +1,4 @@
+/* Global Styles */
 * { 
     margin: 0; 
     padding: 0; 
@@ -46,6 +47,11 @@ body {
     animation: float 8s ease-in-out infinite;
 }
 
+@keyframes float {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
 .login-box {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
@@ -85,6 +91,30 @@ body {
     color: #6c757d;
     margin-bottom: 40px;
     font-size: 1.1em;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 40px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.auth-tab.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 .form-group {
@@ -155,30 +185,6 @@ body {
     box-shadow: 0 12px 30px rgba(40, 167, 69, 0.4);
 }
 
-.auth-tabs {
-    display: flex;
-    margin-bottom: 30px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 5px;
-}
-
-.auth-tab {
-    flex: 1;
-    padding: 12px;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-.auth-tab.active {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-}
-
 /* Navigation Styles */
 .navbar {
     background: linear-gradient(135deg, #2c3e50, #34495e);
@@ -227,8 +233,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: bold;
+    color: white    font-weight: bold;
 }
 
 .logout-btn {
@@ -305,8 +310,6 @@ body {
     text-align: center;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
     margin: 0 5px;
 }
 
@@ -319,11 +322,11 @@ body {
 
 .service-content {
     display: none;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .service-content.active {
     display: block;
-    animation: fadeIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
@@ -455,7 +458,6 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 30px;
-    margin: 30px 0;
 }
 
 .image-container {
@@ -487,6 +489,11 @@ body {
     margin: 20px 0 15px 0;
     color: #2c3e50;
     font-size: 1.3em;
+}
+
+.image-container p {
+    margin: 10px 0;
+    color: #6c757d;
 }
 
 .progress-container {
@@ -805,17 +812,45 @@ body {
         gap: 10px;
     }
     
+    .service-tab {
+        max-width: 100%;
+        margin: 0 0 5px 0;
+    }
+    
     .login-box {
         padding: 30px 25px;
         margin: 20px;
     }
     
-    .bg-remover-controls {
+    .auth-tabs {
         flex-direction: column;
-        align-items: center;
+        gap: 10px;
+    }
+    
+    .upload-box {
+        margin: 20px 0;
+    }
+    
+    .upload-icon {
+        font-size: 4em;
+    }
+    
+    .upload-box {
+        padding: 30px 20px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .bg-options {
+        gap: 10px;
+    }
+    
+    .bg-option {
+        width: 50px;
+        height: 50px;
     }
 }
-
-.hidden {
-    display: none !important;
-}
+    }
+</style>
