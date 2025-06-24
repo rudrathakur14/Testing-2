@@ -161,7 +161,7 @@ function handleFile(file, service) {
     // Validate file type
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif', 'image/bmp'];
     if (!allowedTypes.includes(file.type)) {
-        showStatus(`❌ Please upload a valid image file (JPG, PNG, WEBP, GIF, BMP)`, 'error', service);
+        showStatus('❌ Please upload a valid image file (JPG, PNG, WEBP, GIF, BMP)', 'error', service);
         return;
     }
     
@@ -251,7 +251,7 @@ function createPassportPhoto(img) {
     // Draw the image
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     
-    // Apply subtle enhancement
+    // Apply some basic enhancement
     const imageData = ctx.getImageData(0, 0, passportSize, passportSize);
     const data = imageData.data;
     
@@ -275,9 +275,13 @@ function removeBackground(img) {
     canvas.height = img.height;
     
     // Apply background based on selection
-    switch (selectedBackground) {
+    switch(selectedBackground) {
         case 'white':
             ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case 'transparent':
+            ctx.fillStyle = 'transparent';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             break;
         case 'blue':
@@ -301,9 +305,6 @@ function removeBackground(img) {
             ctx.fillStyle = redGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             break;
-        case 'transparent':
-            // Keep transparent
-            break;
         default:
             // Custom color from color picker
             ctx.fillStyle = document.getElementById('bg-color').value;
@@ -324,10 +325,9 @@ function removeBackground(img) {
         const r = data[i];
         const g = data[i + 1];
         const b = data[i + 2];
-        
         // Detect likely background pixels (very basic)
         const isBackground = (r > 200 && g > 200 && b > 200) || 
-                           (Math.abs(r - g) < 30 && Math.abs(g - b) < 30 && Math.abs(r - b) < 30);
+                               (Math.abs(r - g) < 30 && Math.abs(g - b) < 30 && Math.abs(r - b) < 30);
         
         if (isBackground && selectedBackground === 'transparent') {
             data[i + 3] = 0; // Make transparent
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.bg-option').forEach(option => option.classList.remove('active'));
     });
     
-    // Add scroll animations
+    // Add animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -449,3 +449,4 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(feature);
     });
 });
+    </script>
